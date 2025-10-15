@@ -3,7 +3,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 
 # Paths
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(_file).resolve().parent.parent   # <-- __file_
 
 # .env (local). En Render usas “Environment Variables”
 load_dotenv(BASE_DIR / ".env")
@@ -11,7 +11,7 @@ load_dotenv(BASE_DIR / ".env")
 # Seguridad y hosts
 SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-reemplaza-esto-en-produccion')
 
-# Por defecto FALSE; en local en tu .env pon DEBUG=True
+# Por defecto FALSE; en local pon DEBUG=True en tu .env
 DEBUG = os.getenv('DEBUG', 'False').lower() == 'true'
 
 hosts = os.getenv('ALLOWED_HOSTS', '127.0.0.1,localhost').split(',')
@@ -22,7 +22,7 @@ if RENDER_EXTERNAL_HOSTNAME:
     ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
     CSRF_TRUSTED_ORIGINS = [f"https://{RENDER_EXTERNAL_HOSTNAME}"]
 
-# Si Render está detrás de proxy/https
+# Render detrás de proxy/https
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 # Application definition
 
