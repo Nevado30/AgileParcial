@@ -3,7 +3,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 
 # Paths
-BASE_DIR = Path(_file).resolve().parent.parent   # <-- __file_
+BASE_DIR = Path(__file__).resolve().parent.parent   # <-- __file_
 
 # .env (local). En Render usas “Environment Variables”
 load_dotenv(BASE_DIR / ".env")
