@@ -6,19 +6,9 @@ load_dotenv()
 BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-reemplaza-esto-en-produccion')
 DEBUG = os.getenv('DEBUG', 'True') == 'True'
-<<<<<<< HEAD
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '127.0.0.1,localhost').split(',')
 ALLOWED_HOSTS = []
 
-=======
-ALLOWED_HOSTS = [h.strip() for h in os.getenv('ALLOWED_HOSTS', '127.0.0.1,localhost').split(',') if h.strip()]
-SITE_DOMAIN = os.getenv('SITE_DOMAIN')  # p.ej. tuapp.koyeb.app
-if SITE_DOMAIN:
-    ALLOWED_HOSTS.append(SITE_DOMAIN)
-    CSRF_TRUSTED_ORIGINS = [f"https://{SITE_DOMAIN}"]
-
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
->>>>>>> parent of 2f6c69f (Cambios Anteriores)
 # Application definition
 
 INSTALLED_APPS = [
@@ -41,7 +31,6 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -134,8 +123,3 @@ DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL', EMAIL_HOST_USER)
 LOGIN_URL = '/seguridad/login/'
 LOGIN_REDIRECT_URL = '/reportes/'
 LOGOUT_REDIRECT_URL = '/seguridad/login/'
-
-TWILIO_ACCOUNT_SID = os.getenv('TWILIO_ACCOUNT_SID')
-TWILIO_AUTH_TOKEN = os.getenv('TWILIO_AUTH_TOKEN')
-TWILIO_FROM_NUMBER = os.getenv('TWILIO_FROM_NUMBER')
-TWILIO_SMS_ENABLED = os.getenv('TWILIO_SMS_ENABLED', 'False') == 'True'
